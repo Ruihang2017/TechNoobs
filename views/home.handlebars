@@ -14,19 +14,11 @@
   <div class="container">
 
     <div class="row posts-entry">
-      <div class="col-lg-12">
-        <div class="blog-entry d-flex blog-entry-search-item">
-          <div>
-            <span class="date">Apr. 14th, 2022 &bullet;</span>
-            <h2><a href="/blog/1">Thought you loved Python? Wait until you meet
-                Rust</a></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde,
-              nobis ea quis inventore vel voluptas.</p>
-            <p><a href="/blog/1" class="btn btn-sm btn-outline-primary">Read
-                More</a></p>
-          </div>
-        </div>
-      </div>
+
+      {{#each blogs as |blog|}}
+        {{> blogHome-details}}
+      {{/each}}
+
     </div>
   </div>
 </div>

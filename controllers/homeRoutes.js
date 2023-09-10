@@ -14,7 +14,7 @@ const { User, Comment, Blog } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const BlogData = await Blog.findAll({
+    const blogData = await Blog.findAll({
       include: [{ model: User }, { model: Comment }],
     });
     console.log("GET / ");
@@ -30,10 +30,10 @@ router.get("/", async (req, res) => {
     //   ? employees.find((employee) => employee.id === req.session.user_id)
     //   : null;
 
-    const Blogs = BlogData.map((data) => data.get({ plain: true }));
+    const blogs = blogData.map((data) => data.get({ plain: true }));
     res.render("home", {
       // loggedInUser,
-      Blogs,
+      blogs,
       // logged_in: req.session.logged_in,
     });
     // res.render("teamTaskBoard", {
@@ -51,13 +51,27 @@ router.get("/blog/:id", async (req, res) => {
     // const BlogData = await Blog.findOne({
     //   include: [{ model: User }, { model: Comment }],
     // });
-    const BlogData = await Blog.findByPk(req.params.id);
-    const BlogDataPlain = BlogData.get({ plain: true });
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Comment,
+          include: {
+            model: User,
+            attributes: ["first_name", "last_name"],
+          },
+        },
+      ],
+    });
+    const blogDataPlain = blogData.get({ plain: true });
 
     console.log(`GET /Blog/${req.params.id}`);
+    // console.log(blogDataPlain.comments[0]);
 
     res.render("blog", {
-      BlogDataPlain,
+      blogDataPlain,
     });
   } catch (err) {
     res.status(500).json(err);
