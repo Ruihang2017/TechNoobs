@@ -25,21 +25,21 @@
                 </div>
                 <div class="modal-body">
                     {{!-- <div class="comment-form-wrap"> --}}
-                        <form action="#" class="p-5 ">
+                        <form id ="newBlogFrom" action="#" class="p-5 ">
                             <div class="form-group">
-                                <label for="name">Blog Title</label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="newBlogFromTitle">Blog Title</label>
+                                <input type="text" class="form-control" id="newBlogFromTitle">
                             </div>
                             <div class="form-group">
-                                <label for="message">Blog Message</label>
-                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                <label for="newBlogFromContent">Blog Message</label>
+                                <textarea name="" id="newBlogFromContent" cols="30" rows="10" class="form-control"></textarea>
                             </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
                         </form>
                     {{!-- </div> --}}
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Submit</button>
-                </div>
+
                 </div>
             </div>
         </div>
@@ -57,3 +57,4 @@
 </div>
 
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/home.js"></script>
