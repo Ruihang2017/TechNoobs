@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS techNoobs;
+CREATE DATABASE techNoobs;
