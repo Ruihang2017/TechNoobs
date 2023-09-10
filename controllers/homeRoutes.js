@@ -46,6 +46,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/blog/:id", async (req, res) => {
+  try {
+    // const BlogData = await Blog.findOne({
+    //   include: [{ model: User }, { model: Comment }],
+    // });
+    const BlogData = await Blog.findByPk(req.params.id);
+    const BlogDataPlain = BlogData.get({ plain: true });
+
+    console.log(`GET /Blog/${req.params.id}`);
+
+    res.render("blog", {
+      BlogDataPlain,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // // All task
 // router.get("/tasks", withAuth, async (req, res) => {
 //   try {
