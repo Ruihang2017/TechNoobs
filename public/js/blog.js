@@ -15,6 +15,8 @@ if (
 const deleteButton = document.getElementById("deleteButton");
 const saveButton = document.getElementById("saveButton");
 const blogContentTextarea = document.getElementById("blogContentTextarea");
+const commentTextarea = document.getElementById("commentTextarea");
+const commentSubmitButton = document.getElementById("commentSubmitButton");
 
 // deleteButton event listener
 deleteButton.addEventListener("click", async (event) => {
@@ -81,3 +83,47 @@ saveButton.addEventListener("click", async (event) => {
     console.error("Error:", error);
   }
 });
+
+// createNewComment
+commentSubmitButton.addEventListener("click", createNewComment);
+function createNewComment(event) {
+  const blogId = window.location.href.split("/").pop();
+  const urlComment = url + "api/comment";
+
+  // Create the request headers
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  const reqData = {
+    content: commentTextarea.value,
+    user_id: 1,
+    blog_id: blogId,
+  };
+
+  // Create the request options
+  const requestOptions = {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(reqData),
+  };
+
+  console.log(reqData);
+  // Send the POST request
+  fetch(urlComment, requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((resData) => {
+      // Handle the response data here if needed
+      console.log("POST request successful:", resData);
+      window.location.reload();
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the fetch
+      console.error("Error:", error);
+    });
+}
