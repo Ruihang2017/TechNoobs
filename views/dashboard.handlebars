@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="../css/style.css" />
 
 <nav class="site-nav">
     <div class="container">
@@ -10,7 +10,7 @@
             >.</span></a>
             <div class="col-8 text-end">
             {{#if logged_in}} 
-                <a href="/user/{{loggedInUser.id}}" type="button" class="btn btn-sm btn-outline-light">Dashboard</a>  
+                <a href="/" type="button" class="btn btn-sm btn-outline-light">Home</a>  
                 <a href="/logout" type="button" class="btn btn-sm btn-outline-light">Logout</a>  
             {{else}} 
                 <a href="/login" type="button" class="btn btn-sm btn-outline-light">Login</a>  
@@ -29,7 +29,7 @@
       <div class="col-lg-6">
         <h1 class="heading text-white mb-3">TechNoobs</h1>
         {{#if logged_in}} 
-            <h4 class="text-white">Welcome {{loggedInUser.first_name}} {{loggedInUser.last_name}}</h4>
+            <h4 class="text-white">Welcome {{userDataPlain.first_name}} {{userDataPlain.last_name}}</h4>
         {{/if}}
       </div>
     </div>
@@ -76,7 +76,7 @@
     </div>  
     <div class="row posts-entry">
 
-      {{#each blogs as |blog|}}
+      {{#each userDataPlain.blogs as |blog|}}
         {{> blogHome-details}}
       {{/each}}
 
@@ -84,5 +84,5 @@
   </div>
 </div>
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/home.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/dashboard.js"></script>

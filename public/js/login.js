@@ -5,7 +5,6 @@ const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   // Test response
-  console.log("loginForm");
 
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();

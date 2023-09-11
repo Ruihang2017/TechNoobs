@@ -4,7 +4,6 @@ const signUpForm = document.getElementById("signUpForm");
 
 signUpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  console.log("signUpFormButton on submit");
 
   // Test response
 

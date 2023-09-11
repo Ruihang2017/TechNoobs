@@ -23,7 +23,6 @@ document
     const content = document.getElementById("newBlogFromContent").value;
 
     // You can now use the 'name' and 'description' variables for further processing (e.g., sending to a server)
-
     createNewBlog(title, content);
   });
 
@@ -38,7 +37,6 @@ const createNewBlog = (title, content) => {
 
   const currentDateTime = new Date();
   const formattedDateTime = currentDateTime.toISOString();
-  console.log(formattedDateTime);
 
   const reqData = {
     blog_name: title,
@@ -53,7 +51,6 @@ const createNewBlog = (title, content) => {
     headers: headers,
     body: JSON.stringify(reqData),
   };
-  console.log(reqData);
   // Send the POST request
   fetch(thisUrl, requestOptions)
     .then((response) => {
@@ -64,7 +61,6 @@ const createNewBlog = (title, content) => {
     })
     .then((resData) => {
       // Handle the response data here if needed
-      console.log("POST request successful:", resData);
       window.location.reload();
     })
     .catch((error) => {

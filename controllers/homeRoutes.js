@@ -49,6 +49,42 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/user/:id", withAuth, async (req, res) => {
+  try {
+    // const BlogData = await Blog.findOne({
+    //   include: [{ model: User }, { model: Comment }],
+    // });
+    const userData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Blog,
+        },
+      ],
+      attributes: { exclude: ["password"] },
+    });
+    const userDataPlain = userData.get({ plain: true });
+    console.log(userDataPlain);
+    // const userData = await User.findAll({
+    //   attributes: { exclude: ["password"] },
+    // });
+    // const users = userData.map((user) => user.get({ plain: true }));
+
+    // const loggedInUser = req.session.logged_in
+    //   ? users.find((user) => user.id === req.session.user_id)
+    //   : null;
+
+    // console.log(loggedInUser);
+    // console.log(blogDataPlain.comments[0]);
+
+    res.render("dashboard", {
+      userDataPlain,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/blog/:id", async (req, res) => {
   try {
     // const BlogData = await Blog.findOne({
