@@ -61,4 +61,3 @@ The project follows the Model-View-Controller (MVC) paradigm with the following 
 - `config`: Configuration files, including database and session setup.
 - `routes`: Defines API routes and URL endpoints.
 - `utils`: Utility functions and helpers.
-

@@ -36,7 +36,7 @@ signUpForm.addEventListener("submit", async (e) => {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/login");
   } else {
     alert("Failed to sign up");
   }
