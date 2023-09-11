@@ -45,7 +45,7 @@ const createNewBlog = (title, content) => {
     blog_name: title,
     blog_content: content,
     postDate: formattedDateTime,
-    user_id: 1, //change to the user ID after login is done
+    // user_id: 1, //change to the user ID after login is done
   };
 
   // Create the request options

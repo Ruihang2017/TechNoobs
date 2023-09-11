@@ -8,9 +8,9 @@ const sequelize = require("../config/connection");
 // Importing bcrypt for password hashing
 // Defining our Employee model by extending the built-in Model class of Sequelize
 class User extends Model {
-  // checkPassword(loginPw) {
-  //   return bcrypt.compareSync(loginPw, this.password);
-  // }
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
 }
 
 // Initializing the model's data structures and configurations
@@ -46,17 +46,17 @@ User.init(
   },
   {
     hooks: {
-      // beforeCreate: async (newUserData) => {
-      //   newUserData.password = await bcrypt.hash(newUserData.password, 10);
-      //   return newUserData;
-      // },
-      // beforeUpdate: async (updatedUserData) => {
-      //   updatedUserData.password = await bcrypt.hash(
-      //     updatedUserData.password,
-      //     10,
-      //   );
-      //   return updatedUserData;
-      // },
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10,
+        );
+        return updatedUserData;
+      },
     },
     // Using the established database connection for this model
     sequelize,

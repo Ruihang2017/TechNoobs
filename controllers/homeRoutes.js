@@ -69,12 +69,23 @@ router.get("/blog/:id", async (req, res) => {
       ],
     });
     const blogDataPlain = blogData.get({ plain: true });
+    console.log(blogDataPlain);
+    const userData = await User.findAll({
+      attributes: { exclude: ["password"] },
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
 
-    console.log(`GET /Blog/${req.params.id}`);
+    const loggedInUser = req.session.logged_in
+      ? users.find((user) => user.id === req.session.user_id)
+      : null;
+
+    console.log(loggedInUser);
     // console.log(blogDataPlain.comments[0]);
 
     res.render("blog", {
+      loggedInUser,
       blogDataPlain,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -112,10 +123,11 @@ router.get("/logout", (req, res) => {
     console.log("log out");
     if (req.session.logged_in) {
       req.session.destroy(() => {
-        res.status(204).end();
+        // res.status(204).end();
+        res.redirect("/");
       });
     } else {
-      res.redirect("/login");
+      res.redirect("/");
     }
   } catch (error) {
     res.status(500).json(err);

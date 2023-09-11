@@ -9,7 +9,12 @@
                 class="text-primary"
             >.</span></a>
             <div class="col-8 text-end">
-                <a href="/logout" type="button" class="btn btn-sm btn-outline-light">Logout</a>            
+            {{#if logged_in}} 
+                <a href="/logout" type="button" class="btn btn-sm btn-outline-light">Logout</a>  
+            {{else}} 
+                <a href="/login" type="button" class="btn btn-sm btn-outline-light">Login</a>  
+            {{/if}}
+         
             </div>
         </div>
         </div>
@@ -22,7 +27,9 @@
     <div class="row align-items-center justify-content-center text-center pt-5">
       <div class="col-lg-6">
         <h1 class="heading text-white mb-3">TechNoobs</h1>
-        <h4 class="text-white">Welcome {{loggedInUser.first_name}} {{loggedInUser.last_name}}</h4>
+        {{#if logged_in}} 
+            <h4 class="text-white">Welcome {{loggedInUser.first_name}} {{loggedInUser.last_name}}</h4>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -33,7 +40,9 @@
     <div class="row posts-entry mb-5">
         
         <!-- Modal -->
+    {{#if logged_in}} 
         <p><Button href="/blog/{{id}}" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newBlogPostModal">Add New Blog Post</Button></p>
+    {{/if}}
         <div class="modal fade" id="newBlogPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

@@ -6,12 +6,13 @@ const withAuth = require("../utils/auth");
 router.post("/", withAuth, async (req, res) => {
   try {
     // Extract task data from the req body
-    const { content, user_id, blog_id } = req.body;
+    // const { content, user_id, blog_id } = req.body;
+    const { content, blog_id } = req.body;
 
     // Create the task
     const comment = await Comment.create({
       content,
-      user_id,
+      user_id: req.session.user_id,
       blog_id,
     });
 

@@ -9,8 +9,11 @@
               class="text-primary"
             >.</span></a>
           <div class="col-8 text-end">
-            <h5>Login/out</h5>
-          </div>
+            {{#if logged_in}} 
+                <a href="/logout" type="button" class="btn btn-sm btn-outline-light">Logout</a>  
+            {{else}} 
+                <a href="/login" type="button" class="btn btn-sm btn-outline-light">Login</a>  
+            {{/if}}          </div>
         </div>
       </div>
     </div>
@@ -42,8 +45,7 @@
       <div class="col-md-12 col-lg-12 main-content">
 
         <div class="post-content-body">
-
-{{!-- if logged in --}}
+        {{#if (compare blogDataPlain.user_id '===' loggedInUser.id)}}
           <label for="modelDescriptionText" class="form-label">Update Your Blog</label>
           <textarea class="form-control" id="blogContentTextarea" rows="3" style="height: 35%;">{{blogDataPlain.blog_content}}</textarea>
 
@@ -51,9 +53,10 @@
             <Button type = "button" id = "deleteButton" class="btn btn-sm btn-outline-secondary">Delete</Button>
             <Button type = "button" id = "saveButton" class="btn btn-sm btn-outline-secondary">Save</Button>
           </p>
-          
-{{!-- if not logged in --}}
+        {{else}}
           <p>{{blogDataPlain.blog_content}}</p>
+        {{/if}}
+          
 
         </div>
         </div>
@@ -74,7 +77,7 @@
             {{/each}}
           </ul>
           <!-- END comment-list -->
-
+        {{#if logged_in}}
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5">Leave a comment</h3>
             <form action="#" class="p-5 bg-light">
@@ -88,6 +91,8 @@
 
             </form>
           </div>
+        {{/if }}
+
         </div>
 
       </div>

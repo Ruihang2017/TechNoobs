@@ -6,14 +6,14 @@ const withAuth = require("../utils/auth");
 router.post("/", withAuth, async (req, res) => {
   try {
     // Extract task data from the req body
-    const { blog_name, blog_content, postDate, user_id } = req.body;
+    const { blog_name, blog_content, postDate } = req.body;
 
     // Create the task
     const blog = await Blog.create({
       blog_name,
       blog_content,
       postDate,
-      user_id,
+      user_id: req.session.user_id,
     });
     console.log(`blog created ${blog}`);
     res.status(201).json({ message: "blog created", blog });
