@@ -41,7 +41,8 @@ app.use(
     cookie: {
       secure: "auto",
       httpOnly: true,
-      maxAge: 72 * 60 * 60 * 1000, // 72 hours in milliseconds
+      maxAge: 1 * 60 * 60 * 1000, // 1 hour in milliseconds
+      // maxAge: 10 * 1000, // 1 hour in milliseconds
     }, // automatically set the cookie as secure if the request is secure
   }),
 );

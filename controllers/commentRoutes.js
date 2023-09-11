@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const { Comment, Blog, User } = require("../models");
-// const withAuth = require("../utils/auth");
+const withAuth = require("../utils/auth");
 
 // // Get information for all tasks
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     // Extract task data from the req body
     const { content, user_id, blog_id } = req.body;
